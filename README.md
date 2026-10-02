@@ -9,8 +9,8 @@ GPT 기반 Codex와 Claude Code에서 사용할 수 있는 플러그인입니다
 필수: Python 3.10 이상, Git, 로그인된 Codex CLI. Codex의 로컬 프로젝트 실행 환경을 대상으로 합니다. 웹 ChatGPT에서 Git 링크만 넣는 설치 방식이 아닙니다.
 
 ```text
-codex plugin marketplace add ToolStorage/Project-Coding-Harness
-codex plugin add project-coding-harness@personal
+codex plugin marketplace add thgus851/Project-Coding-Harness
+codex plugin add project-coding-harness@project-coding-harness-codex
 ```
 
 앱을 재시작하고 작업할 프로젝트에서 새 대화를 여세요. 스킬과 로컬 MCP가 함께 설치됩니다. 별도 `git clone`, `python install.py`, `codex mcp add`는 필요하지 않습니다. 실행 환경의 PATH에 `python` 명령(Python 3.10 이상)이 있어야 합니다. `python3`만 제공되는 환경은 Python 실행 명령을 맞춰야 합니다.
@@ -26,7 +26,7 @@ codex plugin add project-coding-harness@personal
 필수: Python 3.10 이상(`python` 명령), Git, 플러그인을 지원하는 Claude Code CLI와 해당 계정 로그인. PowerShell에서 아래 두 줄을 실행합니다. ZIP 다운로드나 수동 파일 복사는 필요하지 않습니다.
 
 ```text
-claude plugin marketplace add ToolStorage/Project-Coding-Harness
+claude plugin marketplace add thgus851/Project-Coding-Harness
 claude plugin install project-coding-harness@project-coding-harness-claude --scope user
 ```
 
@@ -94,14 +94,14 @@ Markdown은 사람이 읽을 수 있으며, 메타데이터와 섹션 구분자�
 마켓플레이스를 갱신한 뒤 다시 설치하고 앱에서 새 대화를 여세요.
 
 ```text
-codex plugin marketplace upgrade personal
-codex plugin add project-coding-harness@personal
+codex plugin marketplace upgrade project-coding-harness-codex
+codex plugin add project-coding-harness@project-coding-harness-codex
 ```
 
 제거:
 
 ```text
-codex plugin remove project-coding-harness@personal
+codex plugin remove project-coding-harness@project-coding-harness-codex
 ```
 
 프로젝트 한 곳에만 적용하려면 전역 설치 대신 프로젝트 로컬 마켓플레이스와 `.codex/config.toml`의 활성화 설정을 사용하세요. 해당 설치의 `mcp.json` 실행 인수에 `--project <절대 프로젝트 경로>`를 추가하면 MCP 도구가 다른 프로젝트 경로를 거부합니다. 이는 하네스 도구의 경계이며 일반 셸이나 Codex 전체에 대한 OS 샌드박스는 아닙니다.
@@ -132,3 +132,7 @@ python -m unittest discover -s plugins/claude-project-coding-harness/tests -v
 ## 간단한 설정 패널
 
 하네스를 사용하면 대화당 한 번 작은 패널을 엽니다. 마지막으로 불러온 사용 모드·검수 깊이·최대 횟수와 **설정** 버튼만 표시하며 진행 단계나 이슈 수를 표시하지 않습니다. 자동 새로고침·폴링·검수 단계별 패널 호출은 없습니다. 설정 버튼을 누를 때 최신 정보를 읽고, 저장 후 패널로 돌아오면 저장된 값을 표시합니다. 다른 대화에서 바꾼 값은 다음에 설정을 열 때 반영됩니다. “하네스 패널 열어줘”로도 열 수 있습니다. Codex 자체의 상시 툴바가 아니라 호환 UI 또는 로컬 브라우저 패널입니다.
+
+## 출처와 라이선스
+
+이 저장소는 [ToolStorage/Project-Coding-Harness](https://github.com/ToolStorage/Project-Coding-Harness)에서 이어받아 thgus851 계정으로 배포하는 MIT 배포본입니다. Codex 원본과 Claude Code 포트를 함께 제공합니다. 원본 저작권 `Copyright (c) 2026 ToolStorage`와 MIT 라이선스 전문은 [LICENSE](LICENSE)에 보존되어 있으며, 재배포 시 이 고지를 유지하세요.

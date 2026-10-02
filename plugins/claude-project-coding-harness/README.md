@@ -34,7 +34,7 @@ claude --plugin-dir C:/path/to/Project-Coding-Harness/plugins/claude-project-cod
 세션 로딩 대신 지속 설치를 원할 때 아래 두 줄을 터미널에 붙여넣으세요. 이 명령은 사용자 플러그인 설정에 저장소를 등록하고 설치합니다.
 
 ```powershell
-claude plugin marketplace add ToolStorage/Project-Coding-Harness
+claude plugin marketplace add thgus851/Project-Coding-Harness
 claude plugin install project-coding-harness@project-coding-harness-claude --scope user
 ```
 
@@ -73,7 +73,7 @@ python ./plugins/claude-project-coding-harness/scripts/harness.py dashboard --pr
 
 ## 출처와 구조
 
-원본은 [ToolStorage/Project-Coding-Harness](https://github.com/ToolStorage/Project-Coding-Harness)의 로컬 Codex 패키지 `0.1.0+codex.20260928084243`입니다. 이 저장소 루트의 `LICENSE`가 MIT 라이선스와 Copyright (c) 2026 ToolStorage 고지를 제공합니다. 재배포 시 이 고지를 유지하세요.
+이 thgus851 배포본의 원본은 [ToolStorage/Project-Coding-Harness](https://github.com/ToolStorage/Project-Coding-Harness)의 로컬 Codex 패키지 `0.1.0+codex.20260928084243`입니다. 이 저장소 루트의 `LICENSE`가 MIT 라이선스와 Copyright (c) 2026 ToolStorage 고지를 제공합니다. 재배포 시 이 고지를 유지하세요.
 
 `scripts/store.py`의 저장·동의·동시성 정책을 유지하고, 분석 요청 문구를 Claude slash 명령으로 변경했습니다. `scripts/harness.py`의 stdio MCP와 loopback 서버를 재사용하되 Codex MCP App metadata/resource를 제거했습니다. `ui/`는 일반 브라우저 전용이며 `skills/`는 Claude 도구 namespace와 독립 subagent 검수 안내를 포함합니다.
 

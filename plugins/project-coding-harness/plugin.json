@@ -5,7 +5,7 @@
   "author": {
     "name": "ToolStorage"
   },
-  "repository": "https://github.com/ToolStorage/Project-Coding-Harness",
+  "repository": "https://github.com/thgus851/Project-Coding-Harness",
   "license": "MIT",
   "extensions": {
     "com.openai": {
