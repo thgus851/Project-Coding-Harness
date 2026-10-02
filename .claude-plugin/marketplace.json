@@ -1,0 +1,15 @@
+{
+  "name": "project-coding-harness-claude",
+  "description": "Project Coding Harness for Claude Code",
+  "owner": {
+    "name": "ToolStorage"
+  },
+  "plugins": [
+    {
+      "name": "project-coding-harness",
+      "source": "./plugins/claude-project-coding-harness",
+      "version": "0.1.0",
+      "description": "Project memory and bounded adversarial review for Claude Code"
+    }
+  ]
+}

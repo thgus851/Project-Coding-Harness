@@ -1,0 +1,10 @@
+{
+  "name": "project-coding-harness",
+  "version": "0.1.0",
+  "description": "Project-local Markdown memory, local settings and bounded adversarial review for Claude Code.",
+  "author": {
+    "name": "ToolStorage"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/ToolStorage/Project-Coding-Harness"
+}

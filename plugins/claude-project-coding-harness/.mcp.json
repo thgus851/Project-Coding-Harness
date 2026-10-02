@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "harness": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/scripts/harness.py", "mcp"],
+      "env": { "PYTHONDONTWRITEBYTECODE": "1" }
+    }
+  }
+}

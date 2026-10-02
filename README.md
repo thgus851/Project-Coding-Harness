@@ -2,9 +2,9 @@
 
 자연어로 개발하는 사람을 위한 **프로젝트 기억 + 회귀검증 + 적대적 검수** 플러그인입니다. KDI, Unity, 특정 언어나 아키텍처를 요구하지 않습니다. 실제 프로젝트 코드를 먼저 읽고 그 프로젝트의 구조를 따릅니다.
 
-Git으로 공유하는 로컬 플러그인입니다. 공식 스토어, 별도 공개 서버, API 키, Python 외부 패키지는 필요하지 않습니다. 사용 중인 Codex 모델이 분석과 개발을 수행하므로 해당 계정의 사용량은 발생합니다.
+GPT 기반 Codex와 Claude Code에서 사용할 수 있는 플러그인입니다. Git으로 배포하며 별도 하네스 서버, 하네스 전용 API 키, Python 외부 패키지는 필요하지 않습니다. 분석·개발·검수는 사용 중인 AI가 수행하므로 해당 Codex/Claude 계정의 사용량은 발생합니다.
 
-## 설치
+## GPT / Codex 설치 — 최초 한 번
 
 필수: Python 3.10 이상, Git, 로그인된 Codex CLI. Codex의 로컬 프로젝트 실행 환경을 대상으로 합니다. 웹 ChatGPT에서 Git 링크만 넣는 설치 방식이 아닙니다.
 
@@ -21,6 +21,30 @@ codex plugin add project-coding-harness@personal
 
 프로젝트명이 표시되면 **프로젝트 분석하기**를 누르세요. 분석은 현재 대화의 AI가 실제 코드를 읽어 수행합니다. 설치만으로 자동 분석하거나 전역 기억을 변경하지 않습니다.
 
+## Claude Code 설치 — 최초 한 번
+
+필수: Python 3.10 이상(`python` 명령), Git, 플러그인을 지원하는 Claude Code CLI와 해당 계정 로그인. PowerShell에서 아래 두 줄을 실행합니다. ZIP 다운로드나 수동 파일 복사는 필요하지 않습니다.
+
+```text
+claude plugin marketplace add ToolStorage/Project-Coding-Harness
+claude plugin install project-coding-harness@project-coding-harness-claude --scope user
+```
+
+Claude Code를 다시 시작하고 실제 개발할 프로젝트에서 새 대화를 여세요. 사용자 범위로 설치하므로 이후 다른 프로젝트에서도 사용할 수 있고, `--plugin-dir`를 매번 입력할 필요가 없습니다. `/mcp`에서 `plugin:project-coding-harness:harness` 연결을 확인하세요.
+
+```text
+/project-coding-harness:project-coding-harness 하네스 설정 페이지를 열어줘.
+/project-coding-harness:project-coding-harness 이 프로젝트를 분석하고 기억해줘.
+```
+
+일반 자연어로 요청해도 됩니다. Claude용 설정 화면은 반환된 loopback URL을 브라우저에서 여는 방식입니다. 분석 버튼을 누르면 대기 요청이 저장되고, 표시된 요청을 현재 프로젝트의 Claude 대화에 보내야 실제 분석이 시작됩니다. 상세 설명은 [Claude 플러그인 안내](plugins/claude-project-coding-harness/README.md)를 확인하세요.
+
+두 버전을 모두 설치할 수 있습니다. 기존 Codex 저장 형식을 유지하므로 같은 프로젝트의 `.coding-harness/`를 읽을 수 있지만, 두 호스트에서 같은 기억을 동시에 수정하지 마세요. 팀원 간 기억은 자동으로 동기화되지 않습니다. 필요한 기억 파일은 저장소 등으로 별도 공유합니다.
+
+플러그인은 이후 세션에서도 사용 가능하지만 모든 요청에서 강제로 실행되지는 않습니다. 하네스 적용이 필요하면 자연어로 명시해 주세요. 프로젝트 분석·영구 기억 갱신·적대적 검수는 사용자 요청/동의에 따라 진행합니다. 설치 자체가 테스트 실행이나 코드 품질을 보장하지는 않습니다.
+
+팀 안내용 메시지는 [Slack 메시지 원문](docs/SLACK_MESSAGE.txt)에 있습니다.
+
 ## 사용할 수 있는 것
 
 - 미분석/분석됨/갱신 권장 상태와 프로젝트명·경로 표시.
@@ -36,7 +60,7 @@ codex plugin add project-coding-harness@personal
 
 ## UI와 호환성
 
-`harness_dashboard`는 MCP Apps HTML 리소스와 로컬 브라우저 URL을 제공합니다. **대화 안의 UI 표시는 앱/버전의 MCP Apps 지원에 따라 다르며 모든 Codex 화면에서 보장하지 않습니다.** 앱의 기본 설정 탭을 확장하지 않습니다.
+Codex 버전의 `harness_dashboard`는 MCP Apps HTML 리소스와 로컬 브라우저 URL을 제공합니다. **대화 안의 UI 표시는 앱/버전의 MCP Apps 지원에 따라 다르며 모든 Codex 화면에서 보장하지 않습니다.** 앱의 기본 설정 탭을 확장하지 않습니다. Claude 버전은 일반 브라우저 URL을 제공하고 MCP Apps 리소스를 사용하지 않습니다.
 
 대화 내 UI에서는 분석 요청을 현재 대화로 전송합니다. 호스트가 전송을 지원하지 않으면 복사할 요청을 표시합니다. 브라우저 UI에서는 버튼으로 요청을 저장한 뒤 표시된 요청을 복사하여 현재 프로젝트 대화에 보내세요. 브라우저가 독립적으로 AI를 실행하지 않습니다. 설정 저장·기억 제안 수락/거절은 브라우저에서도 바로 됩니다. 작업 후 상태 새로고침을 누르면 최신 정보를 볼 수 있습니다.
 
@@ -88,6 +112,7 @@ codex plugin remove project-coding-harness@personal
 
 ```text
 python -m unittest discover -s tests -v
+python -m unittest discover -s plugins/claude-project-coding-harness/tests -v
 ```
 
 외부 Python 패키지 없이 메모리 승인/갱신/복구, 프로젝트 격리, 검수 조기 종료·상한, MCP 및 로컬 UI API를 검증합니다. 도구 계약은 스킬의 `references/`에 있습니다.
